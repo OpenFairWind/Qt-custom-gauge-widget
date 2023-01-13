@@ -638,6 +638,7 @@ QcNeedleItem::QcNeedleItem(QObject *parent) :
     mCurrentValue = 0;
     mColor = Qt::black;
     mLabel = NULL;
+    mFormat = "%1";
     mNeedleType = FeatherNeedle;
 }
 
@@ -694,15 +695,8 @@ void QcNeedleItem::setCurrentValue(float value)
         mCurrentValue = value;
 
     if(mLabel!=0)
-        mLabel->setText(QString::number(mCurrentValue),false);
+        mLabel->setText( QString(mFormat).arg(mCurrentValue),false);
 
-/// This pull request is not working properly
-//    if(mLabel!=0){
-//        QString currentValue;
-//        mLabel->setText( currentValue ,false);
-//        mLabel->setText(currentValue.sprintf(mFormat.toStdString().c_str(), mCurrentValue),false);
-//        Q_UNUSED(currentValue);
-//    }
     update();
 }
 
